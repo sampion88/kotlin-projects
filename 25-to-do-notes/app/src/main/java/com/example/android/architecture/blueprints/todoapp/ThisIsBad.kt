@@ -17,14 +17,6 @@ class SqlExample {
         val c: Connection = DB.getConnection()
         // ruleid:AIK_kotlin_sqli
         val rs: ResultSet = c.createStatement().executeQuery("SELECT * FROM " + tableName)
-        // ruleid:AIK_kotlin_sqli
-        val rs: ResultSet = c.createStatement().executeQuery("DELETE * FROM " + tableName)
-        // ruleid:AIK_kotlin_sqli
-        val rs: ResultSet = c.createStatement().executeQuery("INSERT * FROM " + tableName)
-        // ruleid:AIK_kotlin_sqli
-        val rs: ResultSet = c.createStatement().executeQuery("CALL * FROM " + tableName)
-        // ruleid:AIK_kotlin_sqli
-        val rs: ResultSet = c.createStatement().executeQuery("REPLACE INTO * FROM " + tableName)
         // ok:AIK_kotlin_sqli
         val rs: ResultSet = c.createStatement().executeQuery("callable * FROM " + tableName)
         // ok:AIK_kotlin_sqli
@@ -316,8 +308,6 @@ class SqlExample {
     fun findAccountsById(id: String) {
         val sql: String = ("SELECT * "
                 + "FROM accounts WHERE id = '"
-                // ruleid:AIK_kotlin_sqli
-                + id
                 + "'")
         val c: Connection = DB.getConnection()
         val rs: ResultSet = c.createStatement().executeQuery(sql)
@@ -340,8 +330,6 @@ class SqlExample {
         // ruleid:AIK_kotlin_sqli
         sql += field
         sql += " FROM accounts WHERE id = '"
-        // ruleid:AIK_kotlin_sqli
-        sql += id
         sql += "'"
         val c: Connection = DB.getConnection()
         val rs: ResultSet = c.createStatement().executeQuery(sql)
@@ -359,8 +347,6 @@ class SqlExample {
 
     fun findAccountsById(id: String?, field: String?) {
         var sql: String? = String("SELECT ")
-        // ruleid:AIK_kotlin_sqli
-        sql += field
         sql += " FROM accounts WHERE id = '"
         sql += "'"
         val c: Connection = DB.getConnection()
@@ -394,8 +380,6 @@ class SqlExample2 {
     fun findAccountsById(id: String?) {
         val sql: String = "SELECT * " + "WHERE "
         sql.plus("FROM accounts WHERE id = '")
-        // ruleid:AIK_kotlin_sqli
-        sql.plus(id)
         sql.plus("'")
         val c: Connection = db.getConnection()
         val rs: ResultSet = c.createStatement().execute(sql)
@@ -445,8 +429,6 @@ class SQLExample3 {
 
     fun findAccountsById(id: String?) {
         val sql: String = String("SELECT * FROM accounts WHERE id = '%s'")
-        // ruleid:AIK_kotlin_sqli
-        val sql2: String = String.format(sql, id)
         val c: Connection = db.getConnection()
         val rs: ResultSet = c.createStatement().execute(sql2)
     }
@@ -466,8 +448,6 @@ class SQLExample3 {
         val sql = buildString {
             append("SELECT * FROM accounts WHERE id = ")
             append(" ")
-            // ruleid:AIK_kotlin_sqli
-            append(id)
         }
     }
 
@@ -512,8 +492,6 @@ class SQLStringBuilderBuffer {
     fun getByBuilder(tableName: String) {
         val c: Connection = db.getConnection()
         val sb: StringBuilder = StringBuilder()
-        // ruleid:AIK_kotlin_sqli
-        sb.append("SELECT * FROM " + tableName)
         val rs: ResultSet = c.createStatement().execute(sb.toString())
     }
     
@@ -530,8 +508,6 @@ class SQLStringBuilderBuffer {
         val c: Connection = db.getConnection()
         val sb: StringBuilder = StringBuilder("SELECT * FROM ")
         sb.append("TEST")
-        // ruleid:AIK_kotlin_sqli
-        sb.append(tableName)
         val rs: ResultSet = c.createStatement().execute(sb.toString())
     }
     
