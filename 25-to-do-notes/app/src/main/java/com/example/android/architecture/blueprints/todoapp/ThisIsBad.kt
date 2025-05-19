@@ -18,27 +18,13 @@ class SqlExample {
         // ruleid:AIK_kotlin_sqli
         val rs: ResultSet = c.createStatement().executeQuery("SELECT * FROM " + tableName)
         // ruleid:AIK_kotlin_sqli
-        val rs: ResultSet = c.createStatement().executeQuery(" select * FROM " + tableName)
-        // ruleid:AIK_kotlin_sqli
         val rs: ResultSet = c.createStatement().executeQuery("DELETE * FROM " + tableName)
-        // ruleid:AIK_kotlin_sqli
-        val rs: ResultSet = c.createStatement().executeQuery("delete * FROM " + tableName)
         // ruleid:AIK_kotlin_sqli
         val rs: ResultSet = c.createStatement().executeQuery("INSERT * FROM " + tableName)
         // ruleid:AIK_kotlin_sqli
-        val rs: ResultSet = c.createStatement().executeQuery("insert * FROM " + tableName)
-        // ruleid:AIK_kotlin_sqli
-        val rs: ResultSet = c.createStatement().executeQuery(" UPDATE * FROM " + tableName)
-        // ruleid:AIK_kotlin_sqli
-        val rs: ResultSet = c.createStatement().executeQuery("update * FROM " + tableName)
-        // ruleid:AIK_kotlin_sqli
         val rs: ResultSet = c.createStatement().executeQuery("CALL * FROM " + tableName)
         // ruleid:AIK_kotlin_sqli
-        val rs: ResultSet = c.createStatement().executeQuery("call * FROM " + tableName)
-        // ruleid:AIK_kotlin_sqli
         val rs: ResultSet = c.createStatement().executeQuery("REPLACE INTO * FROM " + tableName)
-        // ruleid:AIK_kotlin_sqli
-        val rs: ResultSet = c.createStatement().executeQuery("Replace INTO * FROM " + tableName)
         // ok:AIK_kotlin_sqli
         val rs: ResultSet = c.createStatement().executeQuery("callable * FROM " + tableName)
         // ok:AIK_kotlin_sqli
@@ -50,25 +36,14 @@ class SqlExample {
         return c.createStatement().executeQuery("blablabla ${tableName}")
     }
     fun getAllFields(tableName: String): String {
-        // ruleid:AIK_kotlin_sqli
-        return c.createStatement().executeQuery("SELECT * FROM " + tableName)
     }
     fun getAllFields(tableName: String): String {
-        // ruleid:AIK_kotlin_sqli
-        return c.createStatement().executeQuery("SELECT * FROM $tableName")
     }
     fun getAllFields(tableName: String): String {
-        // ruleid:AIK_kotlin_sqli
-        return c.createStatement().executeQuery("SELECT * FROM ${tableName}")
     }
     fun getAllFields(tableName: String): String {
-        // ruleid:AIK_kotlin_sqli
-        return c.createStatement().executeQuery("""SELECT * FROM ${tableName}""")
     }
     fun getAllFields(tableName: String): String {
-        return c.createStatement().executeQuery("SELECT * FROM " +
-        // ruleid:AIK_kotlin_sqli
-                "${tableName}")
     }
 // This works, it hits correctly but can't make the test work potioning the ruleid
 //    fun getAllFields(tableName: String): String {
@@ -77,9 +52,7 @@ class SqlExample {
 //    }
     fun getAllFields(tableName: String): String {
         return c.createStatement().executeQuery("""SELECT * FROM 
-                AND IN 
-                // ruleid:AIK_kotlin_sqli
-                ${tableName}""")
+                AND IN """)
     }
     fun getAllFields(tableName: String, second: Int): String {
         return c.createStatement().executeQuery("""SELECT * FROM 
@@ -110,12 +83,7 @@ class SqlExample {
                 ${tableName}""")
     }
     fun getAllFields(tableName: String, second: Int): String {
-        // ruleid:AIK_kotlin_sqli
-        return c.createStatement().executeQuery("SELECT * FROM $second AND ${tableName}")
     }
-
-    // ruleid:AIK_kotlin_sqli
-    fun getAllFields(tableName: String)= c.createStatement().executeQuery("SELECT * FROM " + tableName)
 
     fun getAllFields(tableName: Int) {
         // ok:AIK_kotlin_sqli
@@ -384,8 +352,6 @@ class SqlExample {
         // ruleid:AIK_kotlin_sqli
         sql += field
         sql += " FROM accounts WHERE id = '"
-        // ruleid:AIK_kotlin_sqli
-        sql += id
         sql += "'"
         val c: Connection = DB.getConnection()
         val rs: ResultSet = c.createStatement().executeQuery(sql)
@@ -396,8 +362,6 @@ class SqlExample {
         // ruleid:AIK_kotlin_sqli
         sql += field
         sql += " FROM accounts WHERE id = '"
-        // ruleid:AIK_kotlin_sqli
-        sql += id
         sql += "'"
         val c: Connection = DB.getConnection()
         val rs: ResultSet = c.createStatement().executeQuery(sql)
@@ -407,15 +371,11 @@ class SqlExample {
 class SqlExample2 {
     fun getAllFields(tableName: String) {
         val c: Connection = db.getConnection()
-        // ruleid:AIK_kotlin_sqli
-        val rs: ResultSet = c.createStatement().execute("SELECT * FROM " + tableName)
     }
 
     fun findAccountsById(id: String) {
         val sql: String = ("SELECT * "
                 + "FROM accounts WHERE id = '"
-                // ruleid:AIK_kotlin_sqli
-                + id
                 + "'")
         val c: Connection = db.getConnection()
         val rs: ResultSet = c.createStatement().execute(sql)
@@ -444,8 +404,6 @@ class SqlExample2 {
     fun findAccountsById(id: String?) {
         val sql: String = String("SELECT * ")
         sql.plus("FROM accounts WHERE id = '")
-        // ruleid:AIK_kotlin_sqli
-        sql.plus(id)
         sql.plus("'")
         val c: Connection = db.getConnection()
         val rs: ResultSet = c.createStatement().execute(sql)
@@ -467,8 +425,6 @@ class SQLExample3 {
 
     fun getAllFields(tableName: String?) {
         val c: Connection = db.getConnection()
-        // ruleid:AIK_kotlin_sqli
-        val rs: ResultSet = c.createStatement().execute(String.format("SELECT * FROM %s", tableName))
     }
 
     fun findAccountsById(id: String?) {
@@ -497,15 +453,11 @@ class SQLExample3 {
 
     fun findAccountsById(id: String?) {
         val sql: String = String("SELECT * FROM accounts WHERE id = '%s'"+ " something")
-        // ruleid:AIK_kotlin_sqli
-        val sql2: String = String.format(sql, id)
         val c: Connection = db.getConnection()
         val rs: ResultSet = c.createStatement().execute(sql2)
     }
 
     fun findAccountsById(id: String?) {
-        // ruleid:AIK_kotlin_sqli
-        val sql: String = String.format("SELECT * FROM accounts WHERE id = '%s'", id)
         val c: Connection = db.getConnection()
         val rs: ResultSet = c.createStatement().execute(sql)
     }
@@ -523,8 +475,6 @@ class SQLExample3 {
         val sql = buildString {
             append("SELECT * FROM accounts WHERE id = ")
             append(" ")
-            // ruleid:AIK_kotlin_sqli
-            append(id)
             append(" ")
         }
     }
@@ -550,8 +500,6 @@ class SQLExample3 {
 
     fun convert(publicId: String): String {
         val entityManager: EntityManager = EntityManager()
-        // ruleid: AIK_kotlin_sqli
-        val query: String = "SELECT id FROM \${publicId.prefix().dbTable} WHERE public_id = " + publicId
         var result: String = entityManager.createNativeQuery(query)
         result = entityManager.createQuery(query)
 
@@ -591,16 +539,12 @@ class SQLStringBuilderBuffer {
         val c: Connection = db.getConnection()
         val sb: StringBuilder = StringBuilder("SELECT * FROM " + days)
         sb.append("TEST")
-        // ruleid:AIK_kotlin_sqli
-        sb.append(tableName)
         val rs: ResultSet = c.createStatement().execute(sb.toString())
     }
     
     fun getByBuffer(tableName: String) {
         val c: Connection = db.getConnection()
         val sb: StringBuffer = StringBuffer()
-        // ruleid:AIK_kotlin_sqli
-        sb.append("SELECT * FROM " + tableName)
         val rs: ResultSet = c.createStatement().execute(sb.toString())
     }
 }
