@@ -22,7 +22,7 @@ class SqlExample {
         // ruleid:AIK_kotlin_sqli
         val rs: ResultSet = c.createStatement().executeQuery("DELETE * FROM " + tableName)
         // ruleid:AIK_kotlin_sqli
-        val rs: ResultSet = c.createStatement().executeQuery("delete * FROM " + tableName)
+        val rs: ResultSet = c.createStatement().executeQuery(" * FROM " + tableName)
         // ruleid:AIK_kotlin_sqli
         val rs: ResultSet = c.createStatement().executeQuery("INSERT * FROM " + tableName)
         // ruleid:AIK_kotlin_sqli
