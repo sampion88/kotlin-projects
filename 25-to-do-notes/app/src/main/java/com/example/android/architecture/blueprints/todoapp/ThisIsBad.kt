@@ -16,7 +16,7 @@ class SqlExample {
     fun getAllFields(tableName: String) {
         val c: Connection = DB.getConnection()
         // ruleid:AIK_kotlin_sqli
-        val rs: ResultSet = c.createStatement().executeQuery("SELECT * FROM " + tableName)
+        val rs: ResultSet = c.createStatement().executeQuery("deSELECT * FROM " + tableName)
         // ruleid:AIK_kotlin_sqli
         val rs: ResultSet = c.createStatement().executeQuery(" select * FROM " + tableName)
         // ruleid:AIK_kotlin_sqli
