@@ -295,6 +295,7 @@ class SqlExample {
 
     fun getAllFields(tableName: String?) {
         val date: Date = LocalDate.parse(tableName)
+
         // ok:AIK_kotlin_sqli
         val rs: ResultSet = c.createStatement().executeQuery("SELECT * FROM " + date)
     }
