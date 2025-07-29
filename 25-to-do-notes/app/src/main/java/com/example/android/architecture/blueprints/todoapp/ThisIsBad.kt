@@ -305,8 +305,6 @@ class SqlExample {
         val rs: ResultSet = c.createStatement().executeQuery("SELECT * FROM " + date)
     }
 
-
-
     fun getAllFields(tableName: String?) {
         val date: Date = ZonedDateTime.parse(tableName)
         // ok:AIK_kotlin_sqli
