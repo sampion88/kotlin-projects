@@ -33,4 +33,3 @@ resource "aws_alb_listener" "frontend" {
     type             = "forward"
   }
 }
-
