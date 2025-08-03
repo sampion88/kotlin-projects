@@ -5,6 +5,7 @@ import com.biz.org.DB
 import java.sql.Connection
 import java.sql.SQLException
 import javax.persistence.EntityManager
+import android.webkit.WebView
 
 class SqlExample {
     fun staticQuery() {
@@ -12,9 +13,12 @@ class SqlExample {
         // ok:AIK_kotlin_sqli
         val rs: ResultSet = c.createStatement().executeQuery("SELECT * FROM happy_messages")
     }
-    
+
     fun getAllFields(tableName: String) {
+        webView.getSettings().setJavaScriptEnabled(true)
         val c: Connection = DB.getConnection()
+        // ruleid:AIK_kotlin_sqli
+        val rs: ResultSet = c.createStatement().executeQuery("deSELECT * FROM " + tableName)
         // ruleid:AIK_kotlin_sqli
         val rs: ResultSet = c.createStatement().executeQuery("deSELECT * FROM " + tableName)
         // ruleid:AIK_kotlin_sqli
