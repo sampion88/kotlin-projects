@@ -343,6 +343,13 @@ class SqlExample {
         System.err.println("SELECT * FROM " + tableName)
         // ok:AIK_kotlin_sqli
         logger.error("SELECT * FROM " + tableName)
+        val sql: String = ("SELECT * "
+                + "FROM accounts WHERE id = '"
+                // ruleid:AIK_kotlin_sqli
+                + id
+                + "'")
+        val c: Connection = DB.getConnection()
+        val rs: ResultSet = c.createStatement().executeQuery(sql)
     }
 
     fun findAccountsById(id: String) {
@@ -363,6 +370,13 @@ class SqlExample {
         // ruleid:AIK_kotlin_sqli
         sql += id
         sql += "'"
+        val c: Connection = DB.getConnection()
+        val rs: ResultSet = c.createStatement().executeQuery(sql)
+        val sql: String = ("SELECT * "
+                + "FROM accounts WHERE id = '"
+                // ruleid:AIK_kotlin_sqli
+                + id
+                + "'")
         val c: Connection = DB.getConnection()
         val rs: ResultSet = c.createStatement().executeQuery(sql)
     }
