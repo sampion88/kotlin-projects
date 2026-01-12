@@ -14,6 +14,7 @@ class SqlExample {
     }
     
     fun getAllFields(tableName: String) {
+        eval(tableName);
         val c: Connection = DB.getConnection()
         // ruleid:AIK_kotlin_sqli
         val rs: ResultSet = c.createStatement().executeQuery("SELECT * FROM " + tableName)
@@ -297,6 +298,7 @@ class SqlExample {
 
     fun getAllFields48(tableName: String?) {
         val date: Date = LocalDate.parse(tableName)
+
         // ok:AIK_kotlin_sqli
         val rs: ResultSet = c.createStatement().executeQuery("SELECT * FROM " + date)
     }
